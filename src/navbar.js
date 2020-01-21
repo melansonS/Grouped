@@ -8,7 +8,7 @@ class Navbar extends Component {
     };
 
     window.onscroll = () => {
-      console.log("SCROLL HEIGHT?: ", document.documentElement.scrollTop);
+      // console.log("SCROLL HEIGHT?: ", document.documentElement.scrollTop);
       if (document.documentElement.scrollTop > 0) {
         this.setState({ scroll: document.documentElement.scrollTop });
       }
@@ -33,7 +33,6 @@ class Navbar extends Component {
           <div>grouped</div>
           <div className="pink_comma">.</div>
         </a>
-        <div>Scroll:{this.state.scroll}</div>
       </div>
     );
   }
