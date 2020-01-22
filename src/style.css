@@ -447,7 +447,7 @@ body {
 .new_person_form .group_options .group_select_header {
   color: #0e2a4b;
   font-weight: bold;
-  margin-bottom: 1em;
+  margin: 0.5em 0;
 }
 
 .new_person_form .group_options .group_select {
