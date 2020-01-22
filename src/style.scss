@@ -1,5 +1,6 @@
 $planedGreen: #52a27e;
 $plannedPink: #fe7b6c;
+$deleteRed: #d80202;
 
 $headerText: #332c52;
 $darkText: #0e2a4b;
@@ -88,6 +89,7 @@ body {
   width: 100%;
 }
 .navbar {
+  z-index: 1;
   width: 900px;
   max-width: 80%;
   margin: 0 auto;
@@ -155,7 +157,6 @@ body {
       }
       .edit_group_button {
         color: $lightText;
-        font-size: 15px;
         padding-right: 1em;
         &:hover {
           cursor: pointer;
@@ -170,6 +171,7 @@ body {
       font-size: 18px;
       margin-block-start: 0.5em;
       margin-block-end: 0;
+      padding-left: 1.3em;
     }
     .group_card {
       ul {
@@ -195,12 +197,15 @@ body {
 .person_card {
   display: flex;
   width: 80%;
-  margin: 0 auto;
-  //   justify-content: space-between;
-  align-items: center;
+  padding: 0.5em;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  margin: 0 auto 0.5em auto;
   font-size: 18px;
+  &:hover {
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+  }
   .person_name {
-    // flex-grow: 1;
     width: 40%;
     font-weight: bold;
     color: $darkText;
@@ -221,12 +226,11 @@ body {
   }
 
   .delete {
-    flex-grow: 1;
     color: $lightText;
     transition: 0.4s;
     text-align: right;
     &:hover {
-      color: #d80202;
+      color: $deleteRed;
       cursor: pointer;
     }
   }
@@ -235,7 +239,7 @@ body {
 //GROUP ASSIGNMENT ============================
 .modal {
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 2; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -291,6 +295,28 @@ body {
     text-align: center;
     margin: 1em auto 0 auto;
   }
+  .group_options {
+    font-family: "Roboto", sans-serif;
+    .group_select_header {
+      color: $darkText;
+      font-weight: bold;
+      margin-bottom: 1em;
+    }
+    .group_select {
+      color: $lightText;
+      font-size: 16px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .selected {
+      color: $planedGreen;
+      font-size: 16px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 //EDIT GROUP FROM ============================
@@ -314,7 +340,7 @@ body {
     margin-top: 0.5em;
     color: $darkText;
     &:hover {
-      color: #d80202;
+      color: $deleteRed;
       cursor: pointer;
       text-decoration: line-through;
     }

@@ -14,6 +14,7 @@ body {
 }
 
 .navbar {
+  z-index: 1;
   width: 900px;
   max-width: 80%;
   margin: 0 auto;
@@ -152,7 +153,6 @@ body {
 
 .groups_container .groups_collection .group_header .edit_group_button {
   color: #697b93;
-  font-size: 15px;
   padding-right: 1em;
 }
 
@@ -170,6 +170,7 @@ body {
           margin-block-start: 0.5em;
   -webkit-margin-after: 0;
           margin-block-end: 0;
+  padding-left: 1.3em;
 }
 
 .groups_container .groups_collection .group_card ul {
@@ -231,11 +232,17 @@ body {
   display: -ms-flexbox;
   display: flex;
   width: 80%;
-  margin: 0 auto;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  padding: 0.5em;
+  -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  margin: 0 auto 0.5em auto;
   font-size: 18px;
+}
+
+.person_card:hover {
+  -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
 }
 
 .person_card .person_name {
@@ -266,9 +273,6 @@ body {
 }
 
 .person_card .delete {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
   color: #697b93;
   -webkit-transition: 0.4s;
   transition: 0.4s;
@@ -283,7 +287,7 @@ body {
 .modal {
   position: fixed;
   /* Stay in place */
-  z-index: 1;
+  z-index: 2;
   /* Sit on top */
   left: 0;
   top: 0;
@@ -433,6 +437,34 @@ body {
 }
 
 .new_person_form .new_person_save:hover {
+  cursor: pointer;
+}
+
+.new_person_form .group_options {
+  font-family: "Roboto", sans-serif;
+}
+
+.new_person_form .group_options .group_select_header {
+  color: #0e2a4b;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.new_person_form .group_options .group_select {
+  color: #697b93;
+  font-size: 16px;
+}
+
+.new_person_form .group_options .group_select:hover {
+  cursor: pointer;
+}
+
+.new_person_form .group_options .selected {
+  color: #52a27e;
+  font-size: 16px;
+}
+
+.new_person_form .group_options .selected:hover {
   cursor: pointer;
 }
 

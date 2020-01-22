@@ -3,6 +3,8 @@ import firebase from "./firebaseConfig";
 import PersonCard from "./PersonCard";
 import EditGroupForm from "./EditGroupForm";
 
+import { AiOutlineEdit } from "react-icons/ai";
+
 class GroupCard extends Component {
   constructor(props) {
     super(props);
@@ -97,7 +99,7 @@ class GroupCard extends Component {
     }
     let iconRotation;
     if (this.state.showMembers) {
-      iconRotation = { transform: "rotate(90deg)" };
+      iconRotation = { transform: "rotate(90deg)", zIndex: "0" };
     }
     return (
       <div className="group_card">
@@ -114,7 +116,7 @@ class GroupCard extends Component {
               this.setState({ showEditGroup: true });
             }}
           >
-            [...]
+            <AiOutlineEdit />
           </div>
         </div>
 

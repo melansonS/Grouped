@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import firebase from "./firebaseConfig";
 import EditPersonForm from "./EditPersonForm";
 
+import { AiOutlineDelete } from "react-icons/ai";
+
 class PersonCard extends Component {
   constructor(props) {
     super(props);
@@ -81,7 +83,7 @@ class PersonCard extends Component {
           {this.props.data.group}
         </div>
         <span onClick={this.handleDeletePerson} className="delete">
-          X
+          <AiOutlineDelete />
         </span>
         {this.state.showEditPerson && (
           <div
