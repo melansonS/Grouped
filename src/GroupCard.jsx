@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import firebase from "./firebaseConfig";
 import PersonCard from "./PersonCard";
+import EditGroupForm from "./EditGroupForm";
 
 class GroupCard extends Component {
   constructor(props) {
@@ -8,6 +9,7 @@ class GroupCard extends Component {
     this.state = {
       unsub: undefined,
       showMembers: false,
+      showEditGroup: false,
       members: []
     };
   }
@@ -42,7 +44,9 @@ class GroupCard extends Component {
       );
     });
     if (this.state.members[0] === undefined) {
-      members = <li>This group is currently empty</li>;
+      members = (
+        <li className="group_description">This group is currently empty</li>
+      );
     }
     let iconRotation;
     if (this.state.showMembers) {
@@ -57,7 +61,14 @@ class GroupCard extends Component {
           <h3 onClick={this.handleButtonClick} className="group_name">
             {this.props.groupDetails.name}
           </h3>
-          <div className="edit_group_button">[...]</div>
+          <div
+            className="edit_group_button"
+            onClick={() => {
+              this.setState({ showEditGroup: true });
+            }}
+          >
+            [...]
+          </div>
         </div>
 
         <h5 className="group_description">
@@ -68,6 +79,12 @@ class GroupCard extends Component {
             <div className="group_description">Members:</div>
             <ul>{members}</ul>
           </div>
+        )}
+        {this.state.showEditGroup && (
+          <EditGroupForm
+            id={this.props.groupDetails.id}
+            data={this.props.groupDetails}
+          />
         )}
       </div>
     );

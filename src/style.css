@@ -105,8 +105,8 @@ body {
   background-color: #52a27e;
   color: white;
   border-radius: 24px;
-  margin-left: 1em;
   padding: 0.5em 1em;
+  margin-left: 1em;
 }
 
 .groups_container .group_container_header .add_icon:hover {
@@ -209,8 +209,8 @@ body {
   background-color: #52a27e;
   color: white;
   border-radius: 24px;
-  margin-left: 1em;
   padding: 0.5em 1em;
+  margin-left: 1em;
 }
 
 .people_container .people_container_header .add_icon:hover {
@@ -242,6 +242,13 @@ body {
   width: 40%;
   font-weight: bold;
   color: #0e2a4b;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.person_card .person_name:hover {
+  opacity: 0.6;
+  cursor: pointer;
 }
 
 .person_card .person_group {
@@ -263,12 +270,15 @@ body {
       -ms-flex-positive: 1;
           flex-grow: 1;
   color: #697b93;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
   text-align: right;
 }
 
 .person_card .delete:hover {
   color: #d80202;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .modal {
@@ -318,6 +328,111 @@ body {
 
 .group_assign .group_option:hover {
   color: #52a27e;
+}
+
+.new_group_form {
+  border-radius: 6px;
+  padding: 0 4em 1em 4em;
+  background-color: white;
+  -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+}
+
+.new_group_form form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.new_group_form form input {
+  margin-bottom: 0.5em;
+  outline: none;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid #697b93;
+  font-family: "Roboto", sans-serif;
+}
+
+.new_group_form form textarea {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  outline: none;
+  resize: vertical;
+}
+
+.new_group_form h4 {
+  color: #52a27e;
+  font-family: "Playfair Display", serif;
+  font-weight: normal;
+}
+
+.new_group_form .new_group_save {
+  font-family: "Roboto", sans-serif;
+  background-color: #52a27e;
+  color: white;
+  border-radius: 24px;
+  padding: 0.5em 1em;
+  width: 40%;
+  text-align: center;
+  margin: 1em auto 0 auto;
+}
+
+.new_group_form .new_group_save:hover {
+  cursor: pointer;
+}
+
+.new_person_form {
+  border-radius: 6px;
+  padding: 0 4em 1em 4em;
+  background-color: white;
+  -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+}
+
+.new_person_form form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.new_person_form form input {
+  margin-bottom: 0.5em;
+  outline: none;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid #697b93;
+  font-family: "Roboto", sans-serif;
+}
+
+.new_person_form h4 {
+  color: #52a27e;
+  font-family: "Playfair Display", serif;
+  font-weight: normal;
+}
+
+.new_person_form .new_person_save {
+  font-family: "Roboto", sans-serif;
+  background-color: #52a27e;
+  color: white;
+  border-radius: 24px;
+  padding: 0.5em 1em;
+  width: 40%;
+  text-align: center;
+  margin: 1em auto 0 auto;
+}
+
+.new_person_form .new_person_save:hover {
+  cursor: pointer;
 }
 
 #groups {

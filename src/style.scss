@@ -5,6 +5,16 @@ $headerText: #332c52;
 $darkText: #0e2a4b;
 $lightText: #697b93;
 // ============//
+@mixin greenButton {
+  font-family: "Roboto", sans-serif;
+  background-color: $planedGreen;
+  color: white;
+  border-radius: 24px;
+  padding: 0.5em 1em;
+  &:hover {
+    cursor: pointer;
+  }
+}
 @mixin container {
   margin: 0 auto;
   margin-top: 4em;
@@ -25,16 +35,8 @@ $lightText: #697b93;
     font-family: "Playfair Display", serif;
   }
   .add_icon {
-    font-family: "Roboto", sans-serif;
-    background-color: $planedGreen;
-    color: white;
-    border-radius: 24px;
+    @include greenButton();
     margin-left: 1em;
-    padding: 0.5em 1em;
-    // padding: 0 2em;
-    &:hover {
-      cursor: pointer;
-    }
   }
 }
 @mixin collectionComponent {
@@ -176,6 +178,11 @@ body {
     width: 40%;
     font-weight: bold;
     color: $darkText;
+    transition: 0.3s;
+    &:hover {
+      opacity: 0.6;
+      cursor: pointer;
+    }
   }
   .person_group {
     flex-grow: 1;
@@ -190,10 +197,12 @@ body {
   .delete {
     flex-grow: 1;
     color: $lightText;
+    transition: 0.4s;
     text-align: right;
     &:hover {
       color: #d80202;
       cursor: pointer;
+      font-weight: bold;
     }
   }
 }
@@ -215,7 +224,6 @@ body {
 .group_assign {
   border-radius: 6px;
   padding: 0 4em 1em 4em;
-  //   width: 30%;
   background-color: white;
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
   h4 {
@@ -232,7 +240,75 @@ body {
     }
   }
 }
+//NEW GROUP FORM
+.new_group_form {
+  border-radius: 6px;
+  padding: 0 4em 1em 4em;
+  background-color: white;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+  form {
+    display: flex;
+    flex-direction: column;
+    input {
+      margin-bottom: 0.5em;
+      outline: none;
+      font-size: 16px;
+      border: none;
+      border-bottom: 1px solid $lightText;
+      font-family: "Roboto", sans-serif;
+    }
+    textarea {
+      font-family: "Roboto", sans-serif;
+      font-size: 16px;
+      outline: none;
+      resize: vertical;
+    }
+  }
+  h4 {
+    color: $planedGreen;
+    font-family: "Playfair Display", serif;
+    font-weight: normal;
+  }
+  .new_group_save {
+    @include greenButton();
+    width: 40%;
+    text-align: center;
+    margin: 1em auto 0 auto;
+  }
+}
 
+//NEW PERSON FORM
+.new_person_form {
+  border-radius: 6px;
+  padding: 0 4em 1em 4em;
+  background-color: white;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+  form {
+    display: flex;
+    flex-direction: column;
+    input {
+      margin-bottom: 0.5em;
+      outline: none;
+      font-size: 16px;
+      border: none;
+      border-bottom: 1px solid $lightText;
+      font-family: "Roboto", sans-serif;
+    }
+  }
+  h4 {
+    color: $planedGreen;
+    font-family: "Playfair Display", serif;
+    font-weight: normal;
+  }
+  .new_person_save {
+    @include greenButton();
+    width: 40%;
+    text-align: center;
+    margin: 1em auto 0 auto;
+  }
+}
 //page anchors
 
 #groups {

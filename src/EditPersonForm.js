@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import firebase from "./firebaseConfig";
 
-class NewPersonForm extends Component {
+class EditPersonForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,36 +13,32 @@ class NewPersonForm extends Component {
     this.setState({ name: e.target.value });
   };
   handleSubmit = e => {
-    e.preventDefault();
-    console.log("NAME:", this.state.name);
+    if (e) {
+      e.preventDefault();
+    }
     firebase
       .firestore()
       .collection("people")
-      .add({
-        name: this.state.name,
-        group: "ungrouped"
-      });
+      .doc(this.props.id)
+      .update({ name: this.state.name });
     this.setState({ name: "" });
   };
   render() {
     return (
-      <div className="new_person_form">
-        <h4>Add a new Person!</h4>
+      <div>
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
-            value={this.state.name}
-            placeholder="Name"
-            onChange={this.handleNameChange}
             required
+            placeholder="updated name"
+            onChange={this.handleNameChange}
+            value={this.state.name}
           ></input>
+          <div onClick={this.handleSubmit}>Save</div>
         </form>
-        <div className="new_person_save" onClick={this.handleSubmit}>
-          Add!
-        </div>
       </div>
     );
   }
 }
 
-export default NewPersonForm;
+export default EditPersonForm;

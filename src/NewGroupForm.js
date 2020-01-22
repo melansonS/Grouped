@@ -17,7 +17,9 @@ class NewGroupForm extends Component {
     this.setState({ description: e.target.value });
   };
   handleSubmit = e => {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     console.log("NAME:", this.state.name, "DESC:", this.state.description);
     firebase
       .firestore()
@@ -30,7 +32,8 @@ class NewGroupForm extends Component {
   };
   render() {
     return (
-      <div className="new_group_form group_assign">
+      <div className="new_group_form">
+        <h4>Create a new Group!</h4>
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
@@ -39,15 +42,17 @@ class NewGroupForm extends Component {
             onChange={this.handleNameChange}
             required
           ></input>
-          <input
-            type="text"
+          <textarea
+            rows="5"
             value={this.state.description}
             placeholder="Description"
             onChange={this.handleDescChange}
             required
-          ></input>
-          <input type="submit" value="add group"></input>
+          ></textarea>
         </form>
+        <div className="new_group_save" onClick={this.handleSubmit}>
+          Create!
+        </div>
       </div>
     );
   }

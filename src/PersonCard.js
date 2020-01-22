@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import firebase from "./firebaseConfig";
+import EditPersonForm from "./EditPersonForm";
 
 class PersonCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showChangeName: false,
+      showEditPerson: false,
       showAssignGroup: false,
       groups: [],
       selected: ""
@@ -60,13 +61,24 @@ class PersonCard extends Component {
     });
     return (
       <div className="person_card">
-        <div className="person_name">{this.props.data.name} </div>
+        <div
+          className="person_name"
+          onClick={() => {
+            this.setState({ showEditPerson: true });
+          }}
+        >
+          {this.props.data.name}{" "}
+        </div>
         <div className="person_group" onClick={this.handleShowAssignGroup}>
           {this.props.data.group}
         </div>
         <span onClick={this.handleDeletePerson} className="delete">
           X
         </span>
+        {this.state.showEditPerson && (
+          <EditPersonForm id={this.props.data.id} />
+        )}
+
         {this.state.showAssignGroup && (
           <div
             className="modal"
@@ -77,7 +89,7 @@ class PersonCard extends Component {
             }}
           >
             <div className="group_assign">
-              <h4>Pick from :</h4>
+              <h4>Assign to a new group :</h4>
               {groupOptions}
             </div>
           </div>

@@ -29,13 +29,11 @@ class PeopleCollection extends Component {
     this.setState({ unsub: undefined });
   }
 
-  handleAddPerson = () => {
-    console.log("add person");
-    this.setState({ showForm: !this.state.showForm });
-  };
-
   render() {
-    let peopleElems = this.state.people.map(person => {
+    let sortedPeople = this.state.people.sort((a, b) =>
+      a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1
+    );
+    let peopleElems = sortedPeople.map(person => {
       return <PersonCard data={person} key={person.id} />;
     });
     return (
@@ -43,10 +41,26 @@ class PeopleCollection extends Component {
         <div className="people_container_header">
           <h1>People</h1>
 
-          <div onClick={this.handleAddPerson} className="add_icon">
+          <div
+            onClick={() => {
+              this.setState({ showForm: true });
+            }}
+            className="add_icon"
+          >
             Add a new Person!
           </div>
-          {this.state.showForm && <NewPersonForm />}
+          {this.state.showForm && (
+            <div
+              className="modal"
+              onClick={e => {
+                if (e.target.getAttribute("class") === "modal") {
+                  this.setState({ showForm: false });
+                }
+              }}
+            >
+              <NewPersonForm />
+            </div>
+          )}
         </div>
 
         <div className="people_collection">{peopleElems}</div>
