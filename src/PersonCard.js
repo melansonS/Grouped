@@ -29,12 +29,6 @@ class PersonCard extends Component {
       });
   };
   handleDeletePerson = () => {
-    console.log(
-      "person name:",
-      this.props.data.name,
-      " id:",
-      this.props.data.id
-    );
     firebase
       .firestore()
       .collection("people")
@@ -54,6 +48,7 @@ class PersonCard extends Component {
     let groupOptions = this.state.groups.map((group, i) => {
       return (
         <div
+          className="group_option"
           key={i}
           onClick={() => {
             this.handleReassign(group);
@@ -65,14 +60,28 @@ class PersonCard extends Component {
     });
     return (
       <div className="person_card">
-        <h4>name:{this.props.data.name} </h4>
-        <h5 onClick={this.handleShowAssignGroup}>
-          Group:{this.props.data.group}
-        </h5>
+        <div className="person_name">{this.props.data.name} </div>
+        <div className="person_group" onClick={this.handleShowAssignGroup}>
+          {this.props.data.group}
+        </div>
         <span onClick={this.handleDeletePerson} className="delete">
           X
         </span>
-        {this.state.showAssignGroup && <div>Pick from :{groupOptions}</div>}
+        {this.state.showAssignGroup && (
+          <div
+            className="modal"
+            onClick={e => {
+              if (e.target.getAttribute("class") === "modal") {
+                this.setState({ showAssignGroup: false });
+              }
+            }}
+          >
+            <div className="group_assign">
+              <h4>Pick from :</h4>
+              {groupOptions}
+            </div>
+          </div>
+        )}
       </div>
     );
   }

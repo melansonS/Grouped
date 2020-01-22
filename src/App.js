@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./style.css";
 import GroupsCollection from "./GroupsCollection";
 import PoepleCollection from "./PeopleCollection";
 import Navbar from "./navbar";

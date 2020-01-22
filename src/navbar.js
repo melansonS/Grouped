@@ -24,15 +24,24 @@ class Navbar extends Component {
   };
   render() {
     return (
-      <div className="navbar" style={this.getStyle()}>
-        <a
-          href="#top"
-          className="icon"
-          onClick={() => this.setState({ scroll: 0 })}
-        >
-          <div>grouped</div>
-          <div className="pink_comma">.</div>
-        </a>
+      <div className="navbar_container" style={this.getStyle()}>
+        <div className="navbar">
+          <a
+            href="#top"
+            className="icon"
+            onClick={() => this.setState({ scroll: 0 })}
+          >
+            <div>grouped</div>
+            <div className="pink_comma">.</div>
+          </a>
+          <div className="navbar_anchors">
+            <a href="#groups">Groups</a>
+            <a href="#people">People</a>
+            <a href="https://www.planned.com" className="planned_anchor">
+              Planned
+            </a>
+          </div>
+        </div>
       </div>
     );
   }

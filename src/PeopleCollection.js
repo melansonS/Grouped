@@ -39,11 +39,17 @@ class PeopleCollection extends Component {
       return <PersonCard data={person} key={person.id} />;
     });
     return (
-      <div className="people_collection">
-        <h1>People</h1>
-        <span onClick={this.handleAddPerson}>+</span>
-        {this.state.showForm && <NewPersonForm />}
-        {peopleElems}
+      <div className="people_container">
+        <div className="people_container_header">
+          <h1>People</h1>
+
+          <div onClick={this.handleAddPerson} className="add_icon">
+            Add a new Person!
+          </div>
+          {this.state.showForm && <NewPersonForm />}
+        </div>
+
+        <div className="people_collection">{peopleElems}</div>
       </div>
     );
   }

@@ -33,6 +33,7 @@ class NewPersonForm extends Component {
             value={this.state.name}
             placeholder="Name"
             onChange={this.handleNameChange}
+            required
           ></input>
           <input type="submit" value="add person"></input>
         </form>
