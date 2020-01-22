@@ -139,28 +139,41 @@ body {
   }
   .groups_collection {
     @include collectionComponent();
-    .group_header {
-      font-size: 20px;
-      display: flex;
-      align-items: baseline;
-      color: $darkText;
-      .open_close_icon {
-        transition: 0.45s;
+    .group_card {
+      padding: 0.5em;
+      border-radius: 6px;
+      margin-bottom: 0.5em;
+      box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+      &:hover {
+        box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
       }
-      .group_name {
-        flex-grow: 1;
-        padding-left: 0.5em;
-        margin-block-end: 0;
-        &:hover {
-          cursor: pointer;
+      ul {
+        list-style: none;
+      }
+      .group_header {
+        font-size: 20px;
+        display: flex;
+        align-items: baseline;
+        color: $darkText;
+        .open_close_icon {
+          transition: 0.45s;
         }
-      }
-      .edit_group_button {
-        color: $lightText;
-        padding-right: 1em;
-        &:hover {
-          cursor: pointer;
-          opacity: 0.8;
+        .group_name {
+          flex-grow: 1;
+          padding-left: 0.5em;
+          margin-block-end: 0;
+          font-size: 20px;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .edit_group_button {
+          color: $lightText;
+          padding-right: 1em;
+          &:hover {
+            cursor: pointer;
+            opacity: 0.8;
+          }
         }
       }
     }
@@ -172,11 +185,6 @@ body {
       margin-block-start: 0.5em;
       margin-block-end: 0;
       padding-left: 1.3em;
-    }
-    .group_card {
-      ul {
-        list-style: none;
-      }
     }
   }
 }
@@ -191,6 +199,17 @@ body {
 
   .people_collection {
     @include collectionComponent();
+  }
+}
+.collection_headers {
+  display: flex;
+  font-family: "Roboto", sans-serif;
+  color: $darkText;
+  text-decoration: underline;
+  width: 80%;
+  margin: 0.5em auto;
+  .header_name {
+    width: 40%;
   }
 }
 // person card -----------------------------------------

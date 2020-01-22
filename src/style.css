@@ -122,7 +122,24 @@ body {
   /* Safari and Chrome */
 }
 
-.groups_container .groups_collection .group_header {
+.groups_container .groups_collection .group_card {
+  padding: 0.5em;
+  border-radius: 6px;
+  margin-bottom: 0.5em;
+  -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+}
+
+.groups_container .groups_collection .group_card:hover {
+  -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+}
+
+.groups_container .groups_collection .group_card ul {
+  list-style: none;
+}
+
+.groups_container .groups_collection .group_card .group_header {
   font-size: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -133,30 +150,31 @@ body {
   color: #0e2a4b;
 }
 
-.groups_container .groups_collection .group_header .open_close_icon {
+.groups_container .groups_collection .group_card .group_header .open_close_icon {
   -webkit-transition: 0.45s;
   transition: 0.45s;
 }
 
-.groups_container .groups_collection .group_header .group_name {
+.groups_container .groups_collection .group_card .group_header .group_name {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
   padding-left: 0.5em;
   -webkit-margin-after: 0;
           margin-block-end: 0;
+  font-size: 20px;
 }
 
-.groups_container .groups_collection .group_header .group_name:hover {
+.groups_container .groups_collection .group_card .group_header .group_name:hover {
   cursor: pointer;
 }
 
-.groups_container .groups_collection .group_header .edit_group_button {
+.groups_container .groups_collection .group_card .group_header .edit_group_button {
   color: #697b93;
   padding-right: 1em;
 }
 
-.groups_container .groups_collection .group_header .edit_group_button:hover {
+.groups_container .groups_collection .group_card .group_header .edit_group_button:hover {
   cursor: pointer;
   opacity: 0.8;
 }
@@ -171,10 +189,6 @@ body {
   -webkit-margin-after: 0;
           margin-block-end: 0;
   padding-left: 1.3em;
-}
-
-.groups_container .groups_collection .group_card ul {
-  list-style: none;
 }
 
 .people_container {
@@ -225,6 +239,21 @@ body {
 .people_container .people_collection::-webkit-scrollbar {
   display: none;
   /* Safari and Chrome */
+}
+
+.collection_headers {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: "Roboto", sans-serif;
+  color: #0e2a4b;
+  text-decoration: underline;
+  width: 80%;
+  margin: 0.5em auto;
+}
+
+.collection_headers .header_name {
+  width: 40%;
 }
 
 .person_card {

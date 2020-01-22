@@ -49,6 +49,7 @@ class PeopleCollection extends Component {
           >
             Add a new Person!
           </div>
+
           {this.state.showForm && (
             <div
               className="modal"
@@ -63,7 +64,13 @@ class PeopleCollection extends Component {
           )}
         </div>
 
-        <div className="people_collection">{peopleElems}</div>
+        <div className="people_collection">
+          <div className="collection_headers">
+            <div className="header_name">Name</div>
+            <div className="header_group">Group</div>
+          </div>
+          {peopleElems}
+        </div>
       </div>
     );
   }
