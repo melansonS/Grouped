@@ -59,6 +59,10 @@ class PersonCard extends Component {
         </div>
       );
     });
+    let groupColor;
+    if (this.props.data.group === "ungrouped") {
+      groupColor = { color: "#697b93" };
+    }
     return (
       <div className="person_card">
         <div
@@ -69,14 +73,27 @@ class PersonCard extends Component {
         >
           {this.props.data.name}{" "}
         </div>
-        <div className="person_group" onClick={this.handleShowAssignGroup}>
+        <div
+          className="person_group"
+          onClick={this.handleShowAssignGroup}
+          style={groupColor}
+        >
           {this.props.data.group}
         </div>
         <span onClick={this.handleDeletePerson} className="delete">
           X
         </span>
         {this.state.showEditPerson && (
-          <EditPersonForm id={this.props.data.id} />
+          <div
+            className="modal"
+            onClick={e => {
+              if (e.target.getAttribute("class") === "modal") {
+                this.setState({ showEditPerson: false });
+              }
+            }}
+          >
+            <EditPersonForm id={this.props.data.id} />
+          </div>
         )}
 
         {this.state.showAssignGroup && (

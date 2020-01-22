@@ -14,14 +14,17 @@ class GroupCard extends Component {
     };
   }
   componentDidMount() {
+    //set the query based on the name received as a prop
     let query = firebase
       .firestore()
       .collection("people")
       .where("group", "==", this.props.groupDetails.name);
+    //set up unsubscribe for component unmount
     let unsubscribe = query.onSnapshot(snapshot => {
       let updatedMembers = snapshot.docs.map(doc => {
         return { ...doc.data(), id: doc.id };
       });
+      //set the list of group members to the state
       this.setState({ members: updatedMembers });
     });
     this.setState({ unsub: unsubscribe });
@@ -30,10 +33,54 @@ class GroupCard extends Component {
     this.state.unsub();
     this.setState({ unsub: undefined });
   }
-
-  handleButtonClick = () => {
+  handleShowMembers = () => {
     this.setState({ showMembers: !this.state.showMembers });
   };
+
+  handleEditGroup = updatedName => {
+    console.log(updatedName);
+    //if the group's name has been updated
+    if (updatedName) {
+      //updated the group data for each of it's current memebers
+      this.state.members.forEach(member => {
+        console.log("Member:", member.name, " id:", member.id);
+        firebase
+          .firestore()
+          .collection("people")
+          .doc(member.id)
+          .update({ group: updatedName });
+      });
+      //unsub from previous onSnapshot
+      this.state.unsub();
+      //set up new onSnapshot with updated name
+      let query = firebase
+        .firestore()
+        .collection("people")
+        .where("group", "==", updatedName);
+      //set up unsubscribe for the unmount
+      let unsubscribe = query.onSnapshot(snapshot => {
+        let updatedMembers = snapshot.docs.map(doc => {
+          return { ...doc.data(), id: doc.id };
+        });
+        //set state to "new members"
+        this.setState({ members: updatedMembers });
+      });
+      this.setState({ unsub: unsubscribe });
+    }
+    this.setState({ showEditGroup: false });
+  };
+  handleDeleteGroup = () => {
+    //set the group of each current member of the group to "ungrouped"
+    this.state.members.forEach(member => {
+      firebase
+        .firestore()
+        .collection("people")
+        .doc(member.id)
+        .update({ group: "ungrouped" });
+    });
+    this.setState({ showEditGroup: false });
+  };
+
   render() {
     let members = this.state.members.map(member => {
       return (
@@ -58,7 +105,7 @@ class GroupCard extends Component {
           <div className="open_close_icon" style={iconRotation}>
             >
           </div>
-          <h3 onClick={this.handleButtonClick} className="group_name">
+          <h3 onClick={this.handleShowMembers} className="group_name">
             {this.props.groupDetails.name}
           </h3>
           <div
@@ -76,15 +123,28 @@ class GroupCard extends Component {
         </h5>
         {this.state.showMembers && (
           <div>
-            <div className="group_description">Members:</div>
+            <div className="group_description">
+              Members: {this.state.members.length}
+            </div>
             <ul>{members}</ul>
           </div>
         )}
         {this.state.showEditGroup && (
-          <EditGroupForm
-            id={this.props.groupDetails.id}
-            data={this.props.groupDetails}
-          />
+          <div
+            className="modal"
+            onClick={e => {
+              if (e.target.getAttribute("class") === "modal") {
+                this.setState({ showEditGroup: false });
+              }
+            }}
+          >
+            <EditGroupForm
+              id={this.props.groupDetails.id}
+              data={this.props.groupDetails}
+              submitEdit={this.handleEditGroup}
+              submitDelete={this.handleDeleteGroup}
+            />
+          </div>
         )}
       </div>
     );

@@ -17,9 +17,9 @@ class Navbar extends Component {
 
   getStyle = () => {
     if (this.state.scroll > 15) {
-      return { boxShadow: "0 0 7px rgba(0,0,0,.1)" };
+      return { boxShadow: "0 0 7px rgba(0,0,0,.1)", fontSize: "20px" };
     } else {
-      return;
+      return { fontSize: "30px" };
     }
   };
   render() {

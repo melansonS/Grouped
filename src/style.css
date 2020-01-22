@@ -17,8 +17,8 @@ body {
   width: 900px;
   max-width: 80%;
   margin: 0 auto;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -33,7 +33,6 @@ body {
 
 .navbar .icon {
   font-family: "Roboto", sans-serif;
-  font-size: 30px;
   font-weight: 800;
   text-decoration: none;
   display: -webkit-box;
@@ -159,6 +158,7 @@ body {
 
 .groups_container .groups_collection .group_header .edit_group_button:hover {
   cursor: pointer;
+  opacity: 0.8;
 }
 
 .groups_container .groups_collection .group_description {
@@ -255,7 +255,7 @@ body {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
-  color: #697b93;
+  color: #0e2a4b;
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
@@ -278,7 +278,6 @@ body {
 .person_card .delete:hover {
   color: #d80202;
   cursor: pointer;
-  font-weight: bold;
 }
 
 .modal {
@@ -337,6 +336,7 @@ body {
   -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
   font-size: 18px;
+  width: 240px;
 }
 
 .new_group_form form {
@@ -358,17 +358,17 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-.new_group_form form textarea {
-  font-family: "Roboto", sans-serif;
-  font-size: 16px;
-  outline: none;
-  resize: vertical;
-}
-
 .new_group_form h4 {
   color: #52a27e;
   font-family: "Playfair Display", serif;
   font-weight: normal;
+}
+
+.new_group_form textarea {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  outline: none;
+  resize: vertical;
 }
 
 .new_group_form .new_group_save {
@@ -393,6 +393,7 @@ body {
   -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
   font-size: 18px;
+  width: 240px;
 }
 
 .new_person_form form {
@@ -432,6 +433,125 @@ body {
 }
 
 .new_person_form .new_person_save:hover {
+  cursor: pointer;
+}
+
+.edit_group_modal {
+  border-radius: 6px;
+  padding: 0 4em 1em 4em;
+  background-color: white;
+  -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+  width: 240px;
+}
+
+.edit_group_modal form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.edit_group_modal form input {
+  margin-bottom: 0.5em;
+  outline: none;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid #697b93;
+  font-family: "Roboto", sans-serif;
+}
+
+.edit_group_modal h4 {
+  color: #52a27e;
+  font-family: "Playfair Display", serif;
+  font-weight: normal;
+}
+
+.edit_group_modal textarea {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  outline: none;
+  resize: vertical;
+}
+
+.edit_group_modal .edit_group_save {
+  font-family: "Roboto", sans-serif;
+  background-color: #52a27e;
+  color: white;
+  border-radius: 24px;
+  padding: 0.5em 1em;
+  width: 40%;
+  text-align: center;
+  margin: 1em auto 0 auto;
+}
+
+.edit_group_modal .edit_group_save:hover {
+  cursor: pointer;
+}
+
+.edit_group_modal .delete {
+  text-align: center;
+  margin-top: 0.5em;
+  color: #0e2a4b;
+}
+
+.edit_group_modal .delete:hover {
+  color: #d80202;
+  cursor: pointer;
+  text-decoration: line-through;
+}
+
+.edit_person_modal {
+  border-radius: 6px;
+  padding: 0 4em 1em 4em;
+  background-color: white;
+  -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+  width: 240px;
+}
+
+.edit_person_modal form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.edit_person_modal form input {
+  margin-bottom: 0.5em;
+  outline: none;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid #697b93;
+  font-family: "Roboto", sans-serif;
+}
+
+.edit_person_modal h4 {
+  color: #52a27e;
+  font-family: "Playfair Display", serif;
+  font-weight: normal;
+}
+
+.edit_person_modal .edit_person_save {
+  font-family: "Roboto", sans-serif;
+  background-color: #52a27e;
+  color: white;
+  border-radius: 24px;
+  padding: 0.5em 1em;
+  width: 40%;
+  text-align: center;
+  margin: 1em auto 0 auto;
+}
+
+.edit_person_modal .edit_person_save:hover {
   cursor: pointer;
 }
 

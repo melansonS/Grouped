@@ -25,7 +25,8 @@ class EditPersonForm extends Component {
   };
   render() {
     return (
-      <div>
+      <div className="edit_person_modal">
+        <h4>Update name</h4>
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
@@ -34,7 +35,9 @@ class EditPersonForm extends Component {
             onChange={this.handleNameChange}
             value={this.state.name}
           ></input>
-          <div onClick={this.handleSubmit}>Save</div>
+          <div onClick={this.handleSubmit} className="edit_person_save">
+            Save
+          </div>
         </form>
       </div>
     );
