@@ -7,6 +7,8 @@ This project was built using HTML, CSS, React, Sass and Firebase's very cool pla
 
 <img src="https://raw.githubusercontent.com/melansonS/Grouped/master/public/grouped-demo.gif" alt="demo" width="800"/>
 
+_Stylistically inspired by https://planned.com/_ 
+
 **Demo:** https://grouped-b4deb.web.app/
 
 ## Available Scripts
