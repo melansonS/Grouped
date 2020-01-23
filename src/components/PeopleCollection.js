@@ -14,11 +14,15 @@ class PeopleCollection extends Component {
   }
 
   componentDidMount() {
+    //set up query
     let query = firebase.firestore().collection("people");
+    //set up unsubscribe
     let unsubcribe = query.onSnapshot(snapshot => {
+      //pull data and id from each document
       let updatedCollection = snapshot.docs.map(doc => {
         return { ...doc.data(), id: doc.id };
       });
+      //stash people in the state
       this.setState({ people: updatedCollection });
     });
 
@@ -30,9 +34,11 @@ class PeopleCollection extends Component {
   }
 
   render() {
+    //sort people alphabetically based on their name, regardless of capitalization
     let sortedPeople = this.state.people.sort((a, b) =>
       a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1
     );
+    //generate a dom element (PersonCard) for each person
     let peopleElems = sortedPeople.map(person => {
       return <PersonCard data={person} key={person.id} />;
     });
@@ -40,7 +46,6 @@ class PeopleCollection extends Component {
       <div className="people_container">
         <div className="people_container_header">
           <h1>People</h1>
-
           <div
             onClick={() => {
               this.setState({ showForm: true });
@@ -50,6 +55,7 @@ class PeopleCollection extends Component {
             Add a new Person!
           </div>
 
+          {/* If we're showing the new person form: */}
           {this.state.showForm && (
             <div
               className="modal"

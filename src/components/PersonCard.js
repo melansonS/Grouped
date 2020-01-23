@@ -16,7 +16,8 @@ class PersonCard extends Component {
   }
 
   handleShowAssignGroup = () => {
-    this.setState({ showAssignGroup: !this.state.showAssignGroup });
+    this.setState({ showAssignGroup: true });
+    //set up default groups array
     let groupsArr = ["ungrouped"];
     firebase
       .firestore()
@@ -24,10 +25,12 @@ class PersonCard extends Component {
       .get()
       .then(snapshot => {
         snapshot.forEach(doc => {
+          //add each found group to the groups array
           groupsArr = groupsArr.concat(doc.data().name);
         });
       })
       .then(state => {
+        //stash groups in the state
         this.setState({ groups: groupsArr });
       });
   };
@@ -48,6 +51,9 @@ class PersonCard extends Component {
   };
 
   render() {
+    //generate dom elements for each of the groups
+    //each elements will trigger a reassign on click
+    //the 'ungrouped' elements will have a distinct color
     let groupOptions = this.state.groups.map((group, i) => {
       return (
         <div
@@ -61,10 +67,12 @@ class PersonCard extends Component {
         </div>
       );
     });
+    //html style object assigned for groups elements whose name === ungrouped
     let groupColor;
     if (this.props.data.group === "ungrouped") {
       groupColor = { color: "#697b93" };
     }
+
     return (
       <div className="person_card">
         <div
@@ -73,8 +81,9 @@ class PersonCard extends Component {
             this.setState({ showEditPerson: true });
           }}
         >
-          {this.props.data.name}{" "}
+          {this.props.data.name}
         </div>
+
         <div
           className="person_group"
           onClick={this.handleShowAssignGroup}
@@ -82,9 +91,12 @@ class PersonCard extends Component {
         >
           {this.props.data.group}
         </div>
+
         <span onClick={this.handleDeletePerson} className="delete">
           <AiOutlineDelete />
         </span>
+
+        {/* if we are currently showing the edit person form: */}
         {this.state.showEditPerson && (
           <div
             className="modal"
@@ -98,6 +110,7 @@ class PersonCard extends Component {
           </div>
         )}
 
+        {/* if we are currently showing the group assigment 'form' */}
         {this.state.showAssignGroup && (
           <div
             className="modal"

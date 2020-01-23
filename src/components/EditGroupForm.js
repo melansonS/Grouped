@@ -19,6 +19,7 @@ class EditGroupForm extends Component {
     if (e) {
       e.preventDefault();
     }
+    //if neither of the fields have been updated, return out of the function
     if (this.state.name === "" && this.state.description === "") {
       return;
     }
@@ -34,6 +35,7 @@ class EditGroupForm extends Component {
     if (this.state.description !== "") {
       description = this.state.description;
     }
+    //update the data on firestore
     firebase
       .firestore()
       .collection("groups")
@@ -45,6 +47,7 @@ class EditGroupForm extends Component {
   };
 
   handleDelete = () => {
+    //delete the data on firestore
     firebase
       .firestore()
       .collection("groups")
@@ -57,6 +60,7 @@ class EditGroupForm extends Component {
     return (
       <div className="edit_group_modal">
         <h4>Edit Group!</h4>
+
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
@@ -66,14 +70,15 @@ class EditGroupForm extends Component {
           ></input>
           <textarea
             rows="5"
+            placeholder="updated description..."
             onChange={this.handleDescChange}
             value={this.state.description}
-            placeholder="updated description..."
           ></textarea>
-          <div onClick={this.handleSubmit} className="edit_group_save">
+          <div className="edit_group_save" onClick={this.handleSubmit}>
             Save
           </div>
         </form>
+
         <div className="delete" onClick={this.handleDelete}>
           Delete Group
         </div>

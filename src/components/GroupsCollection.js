@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import GroupCard from "./GroupCard";
+import GroupCard from "./GroupCard.js";
 import firebase from "./firebaseConfig";
 import NewGroupForm from "./NewGroupForm";
 
@@ -14,11 +14,15 @@ class GroupsCollection extends Component {
   }
 
   componentDidMount() {
+    //set up query
     let query = firebase.firestore().collection("groups");
+    //set up unsubscribe for component unmount
     let unsubscribe = query.onSnapshot(snapshot => {
+      //pull data and id from each document
       let updatedGroups = snapshot.docs.map(doc => {
         return { ...doc.data(), id: doc.id };
       });
+      //add groups to the state
       this.setState({ groups: updatedGroups });
     });
     this.setState({ unsub: unsubscribe });
@@ -29,7 +33,7 @@ class GroupsCollection extends Component {
   }
 
   render() {
-    console.log("state log:", this.state.groups);
+    //generate dom elements for each group
     let groupElems = this.state.groups.map(group => {
       return <GroupCard groupDetails={group} key={group.id} />;
     });
@@ -44,6 +48,8 @@ class GroupsCollection extends Component {
           >
             Create a new Group!
           </div>
+
+          {/* if we are showing the new group form:*/}
           {this.state.showForm && (
             <div
               className="modal"
@@ -57,6 +63,7 @@ class GroupsCollection extends Component {
             </div>
           )}
         </div>
+
         <div className="groups_collection">{groupElems}</div>
         <a id="people"></a>
       </div>

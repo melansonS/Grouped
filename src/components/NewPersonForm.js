@@ -19,10 +19,12 @@ class NewPersonForm extends Component {
       .get()
       .then(snapshot => {
         snapshot.forEach(doc => {
+          //add each group to the list
           groupsArr = groupsArr.concat(doc.data().name);
         });
       })
       .then(state => {
+        //store the group in the state
         this.setState({ groups: groupsArr });
       });
   }
@@ -32,7 +34,6 @@ class NewPersonForm extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    // console.log("NAME:", this.state.name);
     firebase
       .firestore()
       .collection("people")
@@ -43,6 +44,7 @@ class NewPersonForm extends Component {
     this.setState({ name: "" });
   };
   render() {
+    //generate dom element for each group element, whose classname is dependant on whether it is currently 'selected'
     let groupElems = this.state.groups.map((group, i) => {
       let groupClass = "group_select";
       if (this.state.selectedGroup === group) {
@@ -67,9 +69,9 @@ class NewPersonForm extends Component {
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
-            value={this.state.name}
             placeholder="Name"
             onChange={this.handleNameChange}
+            value={this.state.name}
             required
           ></input>
         </form>

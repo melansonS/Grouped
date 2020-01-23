@@ -1,0 +1,63 @@
+@mixin greenButton {
+  font-family: "Roboto", sans-serif;
+  background-color: $planedGreen;
+  color: white;
+  border-radius: 24px;
+  padding: 0.5em 1em;
+  &:hover {
+    cursor: pointer;
+  }
+}
+@mixin container {
+  margin: 0 auto;
+  margin-top: 4em;
+  width: 900px;
+  border-radius: 6px;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+  max-width: 80%;
+  padding: 1em;
+}
+@mixin containerHeader {
+  display: flex;
+  align-items: center;
+  margin-right: 2em;
+  h1 {
+    font-weight: normal;
+    text-decoration: underline;
+    color: $headerText;
+    font-family: "Playfair Display", serif;
+  }
+  .add_icon {
+    @include greenButton();
+    margin-left: 1em;
+  }
+}
+@mixin collectionComponent {
+  font-family: "Roboto", sans-serif;
+}
+
+@mixin modalContent {
+  border-radius: 6px;
+  padding: 0 4em 1em 4em;
+  background-color: white;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+  width: 240px;
+  form {
+    display: flex;
+    flex-direction: column;
+    input {
+      margin-bottom: 0.5em;
+      outline: none;
+      font-size: 16px;
+      border: none;
+      border-bottom: 1px solid $lightText;
+      font-family: "Roboto", sans-serif;
+    }
+  }
+  h4 {
+    color: $planedGreen;
+    font-family: "Playfair Display", serif;
+    font-weight: normal;
+  }
+}

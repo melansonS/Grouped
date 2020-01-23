@@ -1,0 +1,10 @@
+.edit_person_modal {
+  @include modalContent();
+
+  .edit_person_save {
+    @include greenButton();
+    width: 40%;
+    text-align: center;
+    margin: 1em auto 0 auto;
+  }
+}

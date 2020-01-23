@@ -7,8 +7,8 @@ class Navbar extends Component {
       scroll: 0
     };
 
+    //if the user has scrolled down slightly past the top we will change the navbar styling
     window.onscroll = () => {
-      // console.log("SCROLL HEIGHT?: ", document.documentElement.scrollTop);
       if (document.documentElement.scrollTop > 0) {
         this.setState({ scroll: document.documentElement.scrollTop });
       }
@@ -16,6 +16,7 @@ class Navbar extends Component {
   }
 
   getStyle = () => {
+    //if the bar if slightly below the top, add box shadow and make the text smaller
     if (this.state.scroll > 15) {
       return { boxShadow: "0 0 7px rgba(0,0,0,.1)", fontSize: "20px" };
     } else {

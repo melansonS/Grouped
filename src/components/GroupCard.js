@@ -23,6 +23,7 @@ class GroupCard extends Component {
       .where("group", "==", this.props.groupDetails.name);
     //set up unsubscribe for component unmount
     let unsubscribe = query.onSnapshot(snapshot => {
+      //pull the data and id from each of the docs
       let updatedMembers = snapshot.docs.map(doc => {
         return { ...doc.data(), id: doc.id };
       });
@@ -39,13 +40,12 @@ class GroupCard extends Component {
     this.setState({ showMembers: !this.state.showMembers });
   };
 
+  //this functions is passed down to the edit form child component and is called upon 'form submission'
   handleEditGroup = updatedName => {
-    console.log(updatedName);
     //if the group's name has been updated
     if (updatedName) {
-      //updated the group data for each of it's current memebers
+      //updated the 'group' data for each of it's current memebers
       this.state.members.forEach(member => {
-        console.log("Member:", member.name, " id:", member.id);
         firebase
           .firestore()
           .collection("people")
@@ -61,6 +61,7 @@ class GroupCard extends Component {
         .where("group", "==", updatedName);
       //set up unsubscribe for the unmount
       let unsubscribe = query.onSnapshot(snapshot => {
+        //pull data and ids from each document
         let updatedMembers = snapshot.docs.map(doc => {
           return { ...doc.data(), id: doc.id };
         });
@@ -71,6 +72,8 @@ class GroupCard extends Component {
     }
     this.setState({ showEditGroup: false });
   };
+
+  //this functions is passed down to the edit form child component and is called upon 'form submission'
   handleDeleteGroup = () => {
     //set the group of each current member of the group to "ungrouped"
     this.state.members.forEach(member => {
@@ -84,22 +87,24 @@ class GroupCard extends Component {
   };
 
   render() {
+    //generate dom element for each of the members
     let members = this.state.members.map(member => {
       return (
         <li key={member.id}>
           <PersonCard data={member} />
-          {/* {member.name} - {member.group} */}
         </li>
       );
     });
+    //if there are no members in the group, display custon dom element
     if (this.state.members[0] === undefined) {
       members = (
         <li className="group_description">This group is currently empty</li>
       );
     }
+    //set up "icon" that rotates to a position based on the "show members" state
     let iconRotation;
     if (this.state.showMembers) {
-      iconRotation = { transform: "rotate(90deg)", zIndex: "0" };
+      iconRotation = { transform: "rotate(90deg)", zIndex: "-1" };
     }
     return (
       <div className="group_card">
@@ -107,9 +112,11 @@ class GroupCard extends Component {
           <div className="open_close_icon" style={iconRotation}>
             >
           </div>
+
           <h3 onClick={this.handleShowMembers} className="group_name">
             {this.props.groupDetails.name}
           </h3>
+
           <div
             className="edit_group_button"
             onClick={() => {
@@ -123,6 +130,8 @@ class GroupCard extends Component {
         <h5 className="group_description">
           {this.props.groupDetails.description}
         </h5>
+
+        {/* if we are showing members: */}
         {this.state.showMembers && (
           <div>
             <div className="group_description">
@@ -131,6 +140,8 @@ class GroupCard extends Component {
             <ul>{members}</ul>
           </div>
         )}
+
+        {/* if we are showing the Edit group form: */}
         {this.state.showEditGroup && (
           <div
             className="modal"
@@ -143,6 +154,7 @@ class GroupCard extends Component {
             <EditGroupForm
               id={this.props.groupDetails.id}
               data={this.props.groupDetails}
+              // functions passed down to handle members cleanup upon group deletion or name edit
               submitEdit={this.handleEditGroup}
               submitDelete={this.handleDeleteGroup}
             />

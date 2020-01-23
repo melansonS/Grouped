@@ -20,7 +20,6 @@ class NewGroupForm extends Component {
     if (e) {
       e.preventDefault();
     }
-    console.log("NAME:", this.state.name, "DESC:", this.state.description);
     firebase
       .firestore()
       .collection("groups")
@@ -37,16 +36,16 @@ class NewGroupForm extends Component {
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
-            value={this.state.name}
             placeholder="Name"
             onChange={this.handleNameChange}
+            value={this.state.name}
             required
           ></input>
           <textarea
             rows="5"
-            value={this.state.description}
             placeholder="Description"
             onChange={this.handleDescChange}
+            value={this.state.description}
             required
           ></textarea>
         </form>

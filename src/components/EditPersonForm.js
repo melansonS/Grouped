@@ -16,6 +16,7 @@ class EditPersonForm extends Component {
     if (e) {
       e.preventDefault();
     }
+    //update data on firestore
     firebase
       .firestore()
       .collection("people")
@@ -30,12 +31,12 @@ class EditPersonForm extends Component {
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
-            required
             placeholder="updated name"
             onChange={this.handleNameChange}
             value={this.state.name}
+            required
           ></input>
-          <div onClick={this.handleSubmit} className="edit_person_save">
+          <div className="edit_person_save" onClick={this.handleSubmit}>
             Save
           </div>
         </form>
