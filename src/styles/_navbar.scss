@@ -46,3 +46,9 @@
     }
   }
 }
+
+@media only screen and (max-width: 668px) {
+  .navbar_anchors a:nth-child(1n + 0) {
+    padding-left: 1em;
+  }
+}

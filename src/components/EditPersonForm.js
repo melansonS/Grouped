@@ -16,6 +16,10 @@ class EditPersonForm extends Component {
     if (e) {
       e.preventDefault();
     }
+    //don't set the name to blank..
+    if (this.state.name === "") {
+      return;
+    }
     //update data on firestore
     firebase
       .firestore()
