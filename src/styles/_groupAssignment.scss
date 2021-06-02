@@ -1,0 +1,10 @@
+.group_assign {
+  @include modalContent();
+  .group_option {
+    color: $lightText;
+    transition: 0.3s;
+    &:hover {
+      color: $plannedGreen;
+    }
+  }
+}

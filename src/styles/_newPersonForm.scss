@@ -1,0 +1,31 @@
+.new_person_form {
+  @include modalContent();
+  .new_person_save {
+    @include greenButton();
+    width: 40%;
+    text-align: center;
+    margin: 1em auto 0 auto;
+  }
+  .group_options {
+    font-family: "Roboto", sans-serif;
+    .group_select_header {
+      color: $darkText;
+      font-weight: bold;
+      margin: 0.5em 0;
+    }
+    .group_select {
+      color: $lightText;
+      font-size: 16px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .selected {
+      color: $plannedGreen;
+      font-size: 16px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

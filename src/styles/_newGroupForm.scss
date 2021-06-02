@@ -1,0 +1,15 @@
+.new_group_form {
+  @include modalContent();
+  textarea {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    outline: none;
+    resize: vertical;
+  }
+  .new_group_save {
+    @include greenButton();
+    width: 40%;
+    text-align: center;
+    margin: 1em auto 0 auto;
+  }
+}

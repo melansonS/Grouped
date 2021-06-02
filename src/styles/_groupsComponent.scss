@@ -1,0 +1,78 @@
+.groups_container {
+  @include container();
+  .group_container_header {
+    @include containerHeader();
+  }
+  .groups_collection {
+    @include collectionComponent();
+    .group_card {
+      padding: 0.5em 1em 1em 1em;
+      border-radius: 6px;
+      margin-bottom: 1em;
+      box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+      transition: 0.4s;
+
+      &:hover {
+        box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+      }
+      ul {
+        list-style: none;
+      }
+      .group_header {
+        display: flex;
+        align-items: center;
+
+        .open_close_icon {
+          padding-top: 0.2em;
+          transition: 0.45s;
+          z-index: 3;
+          height: 100%;
+          stroke-width: 2;
+        }
+
+        .group_text_info {
+          flex-grow: 1;
+          padding-left: 1.3em;
+
+          &:hover {
+            cursor: pointer;
+          }
+
+          .group_title {
+            font-size: 20px;
+            display: flex;
+            align-items: baseline;
+            color: $darkText;
+
+            .group_name {
+              flex-grow: 1;
+              margin-block-end: 0;
+              font-size: 20px;
+            }
+          }
+        }
+        .edit_group_button {
+          color: $lightText;
+          font-size: 1.3em;
+          padding-right: 1em;
+          &:hover {
+            cursor: pointer;
+            opacity: 0.8;
+          }
+        }
+      }
+      .group_description {
+        color: $lightText;
+        font-weight: normal;
+        letter-spacing: 0.56px;
+        font-size: 18px;
+        margin-block-start: 0.5em;
+        margin-block-end: 0;
+      }
+
+      .group_members {
+        padding-left: 2.2em;
+      }
+    }
+  }
+}
