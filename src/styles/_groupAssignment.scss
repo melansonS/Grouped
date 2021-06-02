@@ -5,6 +5,10 @@
     transition: 0.3s;
     &:hover {
       color: $plannedGreen;
+      cursor: pointer;
     }
+  }
+  .active {
+    color: $darkPlannedGreen;
   }
 }

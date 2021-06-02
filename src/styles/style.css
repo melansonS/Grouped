@@ -221,6 +221,7 @@
           box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
   font-size: 18px;
   width: 240px;
+  z-index: 10;
 }
 
 .new_group_form form {
@@ -240,6 +241,7 @@
   border: none;
   border-bottom: 1px solid #697b93;
   font-family: "Roboto", sans-serif;
+  padding: 0.5em;
 }
 
 .new_group_form h4 {
@@ -281,6 +283,9 @@
           box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
   font-size: 18px;
   width: 240px;
+  z-index: 10;
+  width: 50%;
+  z-index: 6;
 }
 
 .edit_group_modal form {
@@ -300,6 +305,7 @@
   border: none;
   border-bottom: 1px solid #697b93;
   font-family: "Roboto", sans-serif;
+  padding: 0.5em;
 }
 
 .edit_group_modal h4 {
@@ -313,6 +319,7 @@
   font-size: 16px;
   outline: none;
   resize: vertical;
+  padding: 0.5em;
 }
 
 .edit_group_modal .edit_group_save {
@@ -475,6 +482,7 @@
           box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
   font-size: 18px;
   width: 240px;
+  z-index: 10;
 }
 
 .new_person_form form {
@@ -494,6 +502,7 @@
   border: none;
   border-bottom: 1px solid #697b93;
   font-family: "Roboto", sans-serif;
+  padding: 0.5em;
 }
 
 .new_person_form h4 {
@@ -556,6 +565,7 @@
           box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
   font-size: 18px;
   width: 240px;
+  z-index: 10;
 }
 
 .edit_person_modal form {
@@ -575,6 +585,7 @@
   border: none;
   border-bottom: 1px solid #697b93;
   font-family: "Roboto", sans-serif;
+  padding: 0.5em;
 }
 
 .edit_person_modal h4 {
@@ -609,6 +620,7 @@
           box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
   font-size: 18px;
   width: 240px;
+  z-index: 10;
 }
 
 .group_assign form {
@@ -628,6 +640,7 @@
   border: none;
   border-bottom: 1px solid #697b93;
   font-family: "Roboto", sans-serif;
+  padding: 0.5em;
 }
 
 .group_assign h4 {
@@ -644,6 +657,11 @@
 
 .group_assign .group_option:hover {
   color: #52a27e;
+  cursor: pointer;
+}
+
+.group_assign .active {
+  color: #418566;
 }
 
 body {

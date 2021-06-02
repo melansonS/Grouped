@@ -5,14 +5,14 @@ class EditPersonForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: ""
+      name: this.props.name || "",
     };
   }
 
-  handleNameChange = e => {
+  handleNameChange = (e) => {
     this.setState({ name: e.target.value });
   };
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     if (e) {
       e.preventDefault();
     }
@@ -27,6 +27,7 @@ class EditPersonForm extends Component {
       .doc(this.props.id)
       .update({ name: this.state.name });
     this.setState({ name: "" });
+    this.props.handleShowEditPerson();
   };
   render() {
     return (
@@ -38,8 +39,7 @@ class EditPersonForm extends Component {
             placeholder="updated name"
             onChange={this.handleNameChange}
             value={this.state.name}
-            required
-          ></input>
+            required></input>
           <div className="edit_person_save" onClick={this.handleSubmit}>
             Save
           </div>

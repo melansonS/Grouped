@@ -11,7 +11,7 @@ class PersonCard extends Component {
       showEditPerson: false,
       showAssignGroup: false,
       groups: [],
-      selected: ""
+      selected: "",
     };
   }
 
@@ -23,31 +23,33 @@ class PersonCard extends Component {
       .firestore()
       .collection("groups")
       .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
+      .then((snapshot) => {
+        snapshot.forEach((doc) => {
           //add each found group to the groups array
           groupsArr = groupsArr.concat(doc.data().name);
         });
       })
-      .then(state => {
+      .then((state) => {
         //stash groups in the state
         this.setState({ groups: groupsArr });
       });
   };
+
   handleDeletePerson = () => {
-    firebase
-      .firestore()
-      .collection("people")
-      .doc(this.props.data.id)
-      .delete();
+    firebase.firestore().collection("people").doc(this.props.data.id).delete();
   };
-  handleReassign = g => {
+
+  handleReassign = (g) => {
     firebase
       .firestore()
       .collection("people")
       .doc(this.props.data.id)
       .update({ group: g });
     this.setState({ showAssignGroup: false });
+  };
+
+  handleShowEditPerson = () => {
+    this.setState({ showEditPerson: !this.state.showEditPerson });
   };
 
   render() {
@@ -57,12 +59,13 @@ class PersonCard extends Component {
     let groupOptions = this.state.groups.map((group, i) => {
       return (
         <div
-          className="group_option"
+          className={`group_option ${
+            group === this.props.data.group ? "active" : ""
+          }`}
           key={i}
           onClick={() => {
             this.handleReassign(group);
-          }}
-        >
+          }}>
           {group}
         </div>
       );
@@ -79,16 +82,14 @@ class PersonCard extends Component {
           className="person_name"
           onClick={() => {
             this.setState({ showEditPerson: true });
-          }}
-        >
+          }}>
           {this.props.data.name}
         </div>
 
         <div
           className="person_group"
           onClick={this.handleShowAssignGroup}
-          style={groupColor}
-        >
+          style={groupColor}>
           {this.props.data.group}
         </div>
 
@@ -100,13 +101,16 @@ class PersonCard extends Component {
         {this.state.showEditPerson && (
           <div
             className="modal"
-            onClick={e => {
+            onClick={(e) => {
               if (e.target.getAttribute("class") === "modal") {
                 this.setState({ showEditPerson: false });
               }
-            }}
-          >
-            <EditPersonForm id={this.props.data.id} />
+            }}>
+            <EditPersonForm
+              id={this.props.data.id}
+              name={this.props.data.name}
+              handleShowEditPerson={this.handleShowEditPerson}
+            />
           </div>
         )}
 
@@ -114,12 +118,11 @@ class PersonCard extends Component {
         {this.state.showAssignGroup && (
           <div
             className="modal"
-            onClick={e => {
+            onClick={(e) => {
               if (e.target.getAttribute("class") === "modal") {
                 this.setState({ showAssignGroup: false });
               }
-            }}
-          >
+            }}>
             <div className="group_assign">
               <h4>Assign to a new group :</h4>
               {groupOptions}

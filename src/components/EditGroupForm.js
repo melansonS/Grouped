@@ -5,17 +5,26 @@ class EditGroupForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      description: ""
+      name: this.props.name || "",
+      description: this.props.description || "",
     };
   }
-  handleNameChange = e => {
+  componentDidMount() {
+    if (this.props.data.description && this.props.data.name) {
+      this.setState({
+        name: this.props.data.name,
+        description: this.props.data.description,
+      });
+    }
+  }
+
+  handleNameChange = (e) => {
     this.setState({ name: e.target.value });
   };
-  handleDescChange = e => {
+  handleDescChange = (e) => {
     this.setState({ description: e.target.value });
   };
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     if (e) {
       e.preventDefault();
     }
@@ -48,11 +57,7 @@ class EditGroupForm extends Component {
 
   handleDelete = () => {
     //delete the data on firestore
-    firebase
-      .firestore()
-      .collection("groups")
-      .doc(this.props.id)
-      .delete();
+    firebase.firestore().collection("groups").doc(this.props.id).delete();
     //function in the parent component set to clean up/edit the group members
     this.props.submitDelete();
   };
@@ -66,14 +71,12 @@ class EditGroupForm extends Component {
             type="text"
             placeholder="updated name"
             onChange={this.handleNameChange}
-            value={this.state.name}
-          ></input>
+            value={this.state.name}></input>
           <textarea
             rows="5"
             placeholder="updated description..."
             onChange={this.handleDescChange}
-            value={this.state.description}
-          ></textarea>
+            value={this.state.description}></textarea>
           <div className="edit_group_save" onClick={this.handleSubmit}>
             Save
           </div>
