@@ -25,9 +25,12 @@
         .open_close_icon {
           padding-top: 0.2em;
           transition: 0.45s;
-          z-index: 3;
           height: 100%;
           stroke-width: 2;
+
+          &:hover {
+            cursor: pointer;
+          }
         }
 
         .group_text_info {

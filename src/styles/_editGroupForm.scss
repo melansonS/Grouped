@@ -1,6 +1,7 @@
 .edit_group_modal {
   @include modalContent();
-  width: 50%;
+  width: 40%;
+  max-width: 600px;
   z-index: 6;
   textarea {
     font-family: "Roboto", sans-serif;

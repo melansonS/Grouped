@@ -104,7 +104,7 @@ class GroupCard extends Component {
     //set up "icon" that rotates to a position based on the "show members" state
     let iconRotation;
     if (this.state.showMembers) {
-      iconRotation = { transform: "rotate(90deg)", zIndex: 2 };
+      iconRotation = { transform: "rotate(90deg)" };
     }
     return (
       <div className="group_card">
